@@ -1,0 +1,94 @@
+@import "../MobileSkeleton/MobileSkeleton.scss";
+
+.whatsapp {
+  width: 100%;
+  height: 100%;
+  background-color: #e5ddd5;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  .background-repeat {
+    background-image: url(./images/bg-chat-tile-light.png);
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.06;
+  }
+  header {
+    border-bottom: 1px solid $header-footer-border;
+    background-color: $header-footer-background;
+    // background-color: #ededed;
+    display: flex;
+    box-sizing: border-box;
+    height: 88px;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    .arrow-left {
+      margin-left: 17px;
+      width: 25px;
+      height: 42px;
+      background-size: 25px 42px;
+      background-image: url(./images/arrow_left.jpg);
+      flex: none;
+    }
+    .profile {
+      margin-left: 54px;
+      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      flex: none;
+    }
+    .name {
+      padding-left: 15px;
+      font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial,
+        Ubuntu, Cantarell, Fira Sans, sans-serif;
+      font-size: 25px;
+      color: #010101;
+      flex-grow: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .icon-right {
+      width: 141px;
+      height: 40px;
+      background-size: 141px 40px;
+      background-image: url(./images/top_icons.jpg);
+      margin-right: 40px;
+    }
+  }
+  body {
+    flex-grow: 1;
+  }
+  footer {
+    height: 88px;
+    width: 100%;
+    background-color: $header-footer-background;
+    position: relative;
+    z-index: 1000;
+    border-top: 1px solid $header-footer-border;
+    display: flex;
+    align-items: center;
+    .plus {
+      margin-left: 27px;
+    }
+    .text-box {
+      height: 60px;
+      border-radius: 30px;
+      flex-grow: 1;
+      background-color: #fff;
+      border: 1px solid $header-footer-border;
+      margin-left: 27px;
+      margin-right: 40px;
+    }
+    .mic {
+      margin-left: 48px;
+      margin-right: 36px;
+    }
+  }
+}

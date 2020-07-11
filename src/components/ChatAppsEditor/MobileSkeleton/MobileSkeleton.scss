@@ -1,0 +1,16 @@
+$header-footer-background: #f6f6f6;
+$header-footer-border: #a4a29d;
+
+.mobile-skeleton {
+  width: 650px;
+  height: 1294px;
+  transform: scale(0.5);
+  flex-direction: column;
+  display: flex;
+  & > header {
+    height: 40px;
+    background-color: $header-footer-background;
+    justify-content: space-between;
+    display: flex;
+  }
+}
