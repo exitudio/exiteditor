@@ -6,8 +6,9 @@ import _image from "./images/image.jpg";
 import mic from "./images/mic.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
+import { connect } from "react-redux";
 
-function Whatsapp() {
+function Whatsapp(props) {
   return (
     <div className="whatsapp">
       <div className="background-repeat" />
@@ -18,8 +19,9 @@ function Whatsapp() {
         <div className="icon-right" />
       </header>
       <div className="chat-body">
-        <ChatElement side="right" />
-        <ChatElement side="left" />
+        {props.chatElements.map((chatElement) => (
+          <ChatElement {...chatElement} key={chatElement.id} />
+        ))}
         <AddChatElements side="right" />
         <AddChatElements side="left" />
       </div>
@@ -33,4 +35,7 @@ function Whatsapp() {
   );
 }
 
-export default Whatsapp;
+const mapStateToProps = (state) => ({
+  chatElements: state.chatApps.chatElements,
+});
+export default connect(mapStateToProps)(Whatsapp);
