@@ -4,6 +4,7 @@ import profile from "./images/profile.jpg";
 import plus from "./images/plus.jpg";
 import _image from "./images/image.jpg";
 import mic from "./images/mic.jpg";
+import ChatElement from "./ChatElements";
 
 function Whatsapp() {
   return (
@@ -15,7 +16,11 @@ function Whatsapp() {
         <div className="name">Kartua Smith USA</div>
         <div className="icon-right" />
       </header>
-      <body></body>
+      <body>
+        <ChatElement side="right"/>
+        <ChatElement side="right"/>
+        <ChatElement side="left"/>
+      </body>
       <footer>
         <img src={plus} alt="plus" className="plus" />
         <div className="text-box"></div>
