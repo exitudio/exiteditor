@@ -66,7 +66,7 @@ $sent-tick: #4fc3f7;
       margin-right: 40px;
     }
   }
-  body {
+  .chat-body {
     flex-grow: 1;
     padding-top: 20px;
     .chat-element {
@@ -112,15 +112,24 @@ $sent-tick: #4fc3f7;
           font-size: 28.4px;
           line-height: 38px;
           box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+          textarea {
+            font-size: 28.4px;
+            border-radius: 8px;
+            width: 90%;
+            padding: 8px;
+          }
           .status {
             float: right;
             margin: 0 0 -10px 8px;
             z-index: 10;
             display: flex;
-            span {
+            span, input {
               color: $grey-1;
               font-size: 22px;
               margin-right: 6px;
+            }
+            input {
+              resize: horizontal;
             }
             .sent-color {
               color: $sent-tick;

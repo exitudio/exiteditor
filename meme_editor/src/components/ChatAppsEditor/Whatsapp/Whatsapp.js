@@ -16,11 +16,11 @@ function Whatsapp() {
         <div className="name">Kartua Smith USA</div>
         <div className="icon-right" />
       </header>
-      <body>
+      <div className="chat-body">
         <ChatElement side="right"/>
         <ChatElement side="right"/>
         <ChatElement side="left"/>
-      </body>
+      </div>
       <footer>
         <img src={plus} alt="plus" className="plus" />
         <div className="text-box"></div>
