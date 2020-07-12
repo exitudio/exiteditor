@@ -1,5 +1,5 @@
 import React from "react";
-import { LumpRight, DoubleTicks, SingleTick, LumpLeft } from "./Svg";
+import { LumpRight, LumpLeft, Waiting, DoubleTicks, SingleTick } from "./Svg";
 
 const ChatElementRight = (props) => {
   return (
@@ -14,10 +14,11 @@ const ChatElementRight = (props) => {
           <div>
             เออ เห็นเพื่อนมึงตอบว่าเอเจนซี่พวกนี้ยาก ไม่แน่ใจว่าเข้าใจผิดป่าว
             กูหมายถึงเอเจนซี่ส่งเดียวกูไปสัมภาษณ์หลาย client บางอันสัมภาษณ์
-            online แค่ชมเดียวก็ได้เลย
+            online แค่ชม
           </div>
           <div className="status">
             <span>9.12 AM</span>
+            <Waiting />
             <DoubleTicks />
             <SingleTick />
           </div>

@@ -105,7 +105,7 @@ $sent-tick: #4fc3f7;
           right: -16px;
         }
         .all-text {
-          padding: 12px 14px 16px 18px;
+          padding: 12px 14px 36px 18px;
           border-radius: 15px;
           border-top-right-radius: 0;
           background-color: $whatsapp-elment-host-background;
@@ -114,7 +114,7 @@ $sent-tick: #4fc3f7;
           box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
           .status {
             float: right;
-            margin: -20px 0 -10px 8px;
+            margin: 0 0 -10px 8px;
             z-index: 10;
             display: flex;
             span {
@@ -122,10 +122,10 @@ $sent-tick: #4fc3f7;
               font-size: 22px;
               margin-right: 6px;
             }
-            .double-ticks {
+            .sent-color {
               color: $sent-tick;
             }
-            .single-tick {
+            .sending-color {
               color: $grey-1;
             }
           }
