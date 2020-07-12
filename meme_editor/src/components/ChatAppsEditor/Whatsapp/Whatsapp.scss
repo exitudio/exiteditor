@@ -2,7 +2,7 @@
 
 $whatsapp-elment-host-background: #dcf8c6;
 $grey-1: rgba(0, 0, 0, 0.45);
-$sent-tick: #4fc3f7;
+$blue: rgb(33, 150, 243);
 
 .whatsapp {
   font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu,
@@ -14,13 +14,12 @@ $sent-tick: #4fc3f7;
   flex-direction: column;
   display: flex;
   .background-repeat {
-    background-image: url(./images/bg-chat-tile-light.png);
+    background-image: url(./images/background.jpg);
     background-repeat: repeat;
     position: absolute;
     top: 0;
     height: 100%;
     width: 100%;
-    opacity: 0.06;
   }
   header {
     border-bottom: 1px solid $header-footer-border;
@@ -111,7 +110,7 @@ $sent-tick: #4fc3f7;
           background-color: $whatsapp-elment-host-background;
           font-size: 28.4px;
           line-height: 38px;
-          box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+          // box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13); // html2canvas doesn't support shadow
           textarea {
             font-size: 28.4px;
             border-radius: 8px;
@@ -123,20 +122,52 @@ $sent-tick: #4fc3f7;
             margin: 0 0 -10px 8px;
             z-index: 10;
             display: flex;
-            span, input {
+            span,
+            input {
               color: $grey-1;
               font-size: 22px;
               margin-right: 6px;
             }
-            input {
-              resize: horizontal;
+            img {
+              margin-top: 8px;
             }
-            .sent-color {
-              color: $sent-tick;
+          }
+        }
+        .status-popover {
+          padding: 12px;
+          border-radius: 10px;
+          background-color: white;
+          flex-direction: column;
+          display: flex;
+          align-items: center;
+          position: absolute;
+          z-index: 1;
+          bottom: -80px;
+          right: -25px;
+          cursor: pointer;
+          img {
+            padding: 4px;
+            margin-top: 4px;
+            border-radius: 4px;
+            &.select {
+              border: 2px solid $blue;
             }
-            .sending-color {
-              color: $grey-1;
-            }
+          }
+        }
+      }
+      &.add {
+        cursor: pointer;
+        &.left {
+          float: left;
+        }
+        &.right {
+          float: right;
+        }
+        .text-wrapper {
+          max-width: unset;
+          .all-text {
+            padding: 10px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
           }
         }
       }

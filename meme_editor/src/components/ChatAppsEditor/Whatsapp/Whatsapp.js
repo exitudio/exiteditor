@@ -5,6 +5,7 @@ import plus from "./images/plus.jpg";
 import _image from "./images/image.jpg";
 import mic from "./images/mic.jpg";
 import ChatElement from "./ChatElements";
+import AddChatElements from "./ChatElements/AddChatElements";
 
 function Whatsapp() {
   return (
@@ -17,9 +18,10 @@ function Whatsapp() {
         <div className="icon-right" />
       </header>
       <div className="chat-body">
-        <ChatElement side="right"/>
-        <ChatElement side="right"/>
-        <ChatElement side="left"/>
+        <ChatElement side="right" />
+        <ChatElement side="left" />
+        <AddChatElements side="right" />
+        <AddChatElements side="left" />
       </div>
       <footer>
         <img src={plus} alt="plus" className="plus" />
