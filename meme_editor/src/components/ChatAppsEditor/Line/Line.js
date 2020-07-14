@@ -1,20 +1,20 @@
 import React from "react";
-import "./Whatsapp.scss";
-import profile from "./images/profile.jpg";
-import plus from "./images/plus.jpg";
-import _image from "./images/image.jpg";
-import mic from "./images/mic.jpg";
+import "./Line.scss";
+import headerLeft from "./images/header-left.jpg";
+import headerRight from "./images/header-right.jpg";
+import footerLeft from "./images/footer-left.jpg";
+import footerMid from "./images/footer-mid.jpg";
+import footerRight from "./images/footer-right.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect } from "react-redux";
 
-function Whatsapp(props) {
+function Line(props) {
   return (
-    <div className="whatsapp">
+    <div className="line">
       <div className="background-repeat" />
       <header>
-        <div className="arrow-left" />
-        <img src={profile} alt="profile" className="profile" />
+        <img src={headerLeft} alt="header-left" />
         <div
           className="name"
           contentEditable="true"
@@ -22,7 +22,7 @@ function Whatsapp(props) {
         >
           Lisa
         </div>
-        <div className="icon-right" />
+        <img src={headerRight} alt="header-right" />
       </header>
       <div className="chat-body">
         {props.chatElements.map((chatElement) => (
@@ -32,10 +32,9 @@ function Whatsapp(props) {
         <AddChatElements side="left" />
       </div>
       <footer>
-        <img src={plus} alt="plus" className="plus" />
-        <div className="text-box"></div>
-        <img src={_image} alt="img" className="img" />
-        <img src={mic} alt="mic" className="mic" />
+        <img src={footerLeft} alt="footer-left" />
+        <img src={footerMid} alt="footer-mid" className="mid"/>
+        <img src={footerRight} alt="footer-right" />
       </footer>
     </div>
   );
@@ -44,4 +43,4 @@ function Whatsapp(props) {
 const mapStateToProps = (state) => ({
   chatElements: state.chatApps.chatElements,
 });
-export default connect(mapStateToProps)(Whatsapp);
+export default connect(mapStateToProps)(Line);

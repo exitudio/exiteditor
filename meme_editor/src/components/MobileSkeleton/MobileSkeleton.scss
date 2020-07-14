@@ -1,10 +1,13 @@
 $header-footer-background: #f6f6f6;
 $header-footer-border: #a4a29d;
 
-.mobile-skeleton {
+#root-image {
   transform: scale(0.5);
+}
+.mobile-skeleton {
   flex-direction: column;
   display: flex;
+  border: 2px solid #ddd;
   & > header {
     height: 40px;
     background-color: $header-footer-background;

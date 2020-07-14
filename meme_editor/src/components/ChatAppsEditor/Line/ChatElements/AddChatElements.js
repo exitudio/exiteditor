@@ -8,9 +8,7 @@ import { addChat } from "redux/chatApps/chatAppsActions";
 
 const ChatElementRight = (props) => {
   const dispatch = useDispatch();
-  const onClick = () => {
-    dispatch(addChat(props.side));
-  };
+  const onClick = () => dispatch(addChat(props.side));
   return (
     <div
       className={`chat-element add ${props.side}`}
@@ -18,12 +16,12 @@ const ChatElementRight = (props) => {
       data-remove-from-image
     >
       <div className="text-wrapper">
-        {props.side === "left" ? (
-          <img src={lumpLeft} alt="lump-left" className="lump" />
-        ) : (
-          <img src={lumpRight} alt="lump-right" className="lump" />
-        )}
         <div className="all-text">
+          {props.side === "left" ? (
+            <img src={lumpLeft} alt="lump-left" className="lump" />
+          ) : (
+            <img src={lumpRight} alt="lump-right" className="lump" />
+          )}
           <AddCircle
             className="fa fa-plus-circle"
             style={{ color: blue[500], fontSize: "100px" }}

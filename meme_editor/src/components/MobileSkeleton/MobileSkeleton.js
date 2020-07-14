@@ -6,7 +6,7 @@ import headbarRight from "./images/head-bar-right.jpg";
 
 function MobileSkeleton(props) {
   return (
-    <div className="mobile-skeleton">
+    <div id="root-image" className="mobile-skeleton">
       <header>
         <img src={headbarLeft} alt="header-bar-left" />
         <img src={headbarMid} alt="header-bar-mid" />

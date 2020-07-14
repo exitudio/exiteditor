@@ -4,13 +4,12 @@ import lumpLeft from "../images/lump-left.png";
 import sending from "../images/sending.png";
 import sent from "../images/sent.png";
 import read from "../images/read.png";
-import { useDispatch } from "react-redux";
-import { updateChat } from "redux/chatApps/chatAppsActions";
 import {
   STATUS_SENDING,
   STATUS_SENT,
   STATUS_READ,
 } from "constants/chatConstant";
+import StatusPopup from "./StatusPopup";
 
 const mapImageStatus = {
   [STATUS_SENDING]: sending,
@@ -19,24 +18,22 @@ const mapImageStatus = {
 };
 
 const ChatElementRight = (props) => {
-  const dispatch = useDispatch();
-  const [isOvering, changeOver] = useState(false);
+  const [isPopupOpening, setOpenPopup] = useState(false);
+  const [status, setStatus] = useState(STATUS_READ);
+  const onStatusClick = (e) => setStatus(e.target.getAttribute("status"));
+  const openStatusPopup = () => setOpenPopup(true);
+  const closeStatusPopup = () => setOpenPopup(false);
 
-  const dispatchUpdateChange = (key, value) => {
-    dispatch(updateChat(props.id, key, value));
+  // for prevent pasting style
+  const onPaste = (e) => {
+    e.preventDefault();
+    // get text representation of clipboard
+    var text = (e.originalEvent || e).clipboardData.getData("text/plain");
+    // insert text manually
+    document.execCommand("insertHTML", false, text);
   };
-  const onTextChange = (e) => dispatchUpdateChange("text", e.target.value);
-  const onTimeChange = (e) => dispatchUpdateChange("timestamp", e.target.value);
-  const onStatusClick = (e) => {
-    dispatchUpdateChange("status", e.target.getAttribute("status"));
-  };
-
   return (
-    <div
-      className={`chat-element ${props.side}`}
-      onMouseEnter={() => changeOver(true)}
-      onMouseLeave={() => changeOver(false)}
-    >
+    <div className={`chat-element ${props.side}`}>
       <div className="text-wrapper">
         {props.side === "left" ? (
           <img src={lumpLeft} alt="lump-left" className="lump" />
@@ -44,66 +41,38 @@ const ChatElementRight = (props) => {
           <img src={lumpRight} alt="lump-right" className="lump" />
         )}
         <div className="all-text">
-          {isOvering ? (
-            <textarea
-              name="send-text"
-              rows="4"
-              cols="20"
-              placeholder="Add text ..."
-              onChange={onTextChange}
-              value={props.text}
-            />
-          ) : (
-            <div>{props.text ? props.text : <em>Add text ...</em>}</div>
-          )}
+          <div
+            contentEditable="true"
+            suppressContentEditableWarning={true}
+            onPaste={onPaste}
+          >
+            Add text ...
+          </div>
           <div className="status">
-            {isOvering ? (
-              <input
-                type="text"
-                size="7"
-                onChange={onTimeChange}
-                value={props.timestamp}
-              />
-            ) : (
-              <span>{props.timestamp}</span>
-            )}
-
-            {
+            <span
+              contentEditable="true"
+              suppressContentEditableWarning={true}
+              onPaste={onPaste}
+            >
+              9.12 AM
+            </span>
+            {props.side === "right" ? (
               <img
-                src={mapImageStatus[props.status]}
-                alt="sending"
+                src={mapImageStatus[status]}
+                alt="status"
                 height="20"
+                style={{ cursor: "pointer" }}
+                onClick={openStatusPopup}
               />
-            }
+            ) : null}
           </div>
         </div>
-        {isOvering ? (
-          <div className="status-popover">
-            <img
-              src={sending}
-              alt="sending"
-              width="20"
-              status={STATUS_SENDING}
-              onClick={onStatusClick}
-              className={props.status === STATUS_SENDING ? "selected" : ""}
-            />
-            <img
-              src={sent}
-              alt="sent"
-              width="20"
-              status={STATUS_SENT}
-              className={props.status === STATUS_SENT ? "selected" : ""}
-              onClick={onStatusClick}
-            />
-            <img
-              src={read}
-              alt="read"
-              width="30"
-              status={STATUS_READ}
-              className={props.status === STATUS_READ ? "selected" : ""}
-              onClick={onStatusClick}
-            />
-          </div>
+        {isPopupOpening ? (
+          <StatusPopup
+            status={status}
+            onStatusClick={onStatusClick}
+            close={closeStatusPopup}
+          />
         ) : null}
       </div>
     </div>

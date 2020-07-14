@@ -110,22 +110,20 @@ $blue: rgb(33, 150, 243);
           background-color: $whatsapp-elment-host-background;
           font-size: 28.4px;
           line-height: 38px;
-          // box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13); // html2canvas doesn't support shadow
+          box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13); // html2canvas doesn't support shadow
           textarea {
             font-size: 28.4px;
             border-radius: 8px;
             width: 90%;
             padding: 8px;
           }
-          em {
-            font-style: italic;
-            color: gray;
-          }
           .status {
             float: right;
             margin: 0 0 -10px 8px;
             z-index: 10;
             display: flex;
+            width: 100%;
+            justify-content: flex-end;
             span,
             input {
               color: $grey-1;

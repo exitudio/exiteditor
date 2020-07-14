@@ -1,0 +1,153 @@
+$elment-host-background: #72de54;
+$grey-1: rgba(0, 0, 0, 0.45);
+$blue: rgb(33, 150, 243);
+$header-background-color: #202a43;
+
+.line {
+  font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu,
+    Cantarell, Fira Sans, sans-serif;
+  width: 650px;
+  min-height: 1000px; //1294px;
+  background-color: #e5ddd5;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  .background-repeat {
+    background-image: url(./images/background.jpg);
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+  header {
+    background-color: $header-background-color;
+    display: flex;
+    box-sizing: border-box;
+    height: 88px;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    .name {
+      padding-left: 28px;
+      font-size: 34px;
+      color: white;
+      flex-grow: 1;
+    }
+    .icon-right {
+      width: 141px;
+      height: 40px;
+      background-size: 141px 40px;
+      background-image: url(./images/top_icons.jpg);
+      margin-right: 40px;
+    }
+  }
+  .chat-body {
+    flex-grow: 1;
+    padding-top: 20px;
+    .chat-element {
+      padding-left: 20px;
+      padding-right: 30px;
+      margin-bottom: 24px;
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      &.left {
+        align-items: flex-start;
+        .text-wrapper {
+          .all-text {
+            background-color: white;
+            .lump {
+              left: -12px;
+            }
+          }
+          .text-status {
+            text-align: left;
+          }
+        }
+      }
+
+      .profile {
+        border-radius: 50%;
+        width: 66px;
+        height: 66px;
+        margin-right: 20px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      .dummy-profile-wrapper {
+        width: 86px;
+        height: 66px;
+      }
+      .text-wrapper {
+        .popover {
+          padding: 12px;
+          border-radius: 10px;
+          background-color: white;
+          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.42);
+          position: absolute;
+          z-index: 101;
+          top: 0;
+          label {
+            cursor: pointer;
+          }
+          input[type="file"] {
+            display: none;
+          }
+        }
+        max-width: 85%;
+        display: flex;
+        align-items: flex-end;
+        .all-text {
+          position: relative;
+          padding: 12px 22px 12px 22px;
+          border-radius: 35px;
+          background-color: $elment-host-background;
+          font-size: 24px;
+          line-height: 38px;
+          .lump {
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            right: -14px;
+          }
+        }
+        .text-status {
+          color: white;
+          margin: 0 12px 8px 12px;
+          text-align: right;
+          font-size: 14px;
+        }
+      }
+      &.add {
+        cursor: pointer;
+        &.left {
+          float: left;
+        }
+        &.right {
+          float: right;
+        }
+        .text-wrapper {
+          max-width: unset;
+          .all-text {
+            padding: 10px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
+          }
+        }
+      }
+    }
+  }
+  footer {
+    height: 102px;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    .mid {
+      flex-grow: 1;
+    }
+  }
+}
