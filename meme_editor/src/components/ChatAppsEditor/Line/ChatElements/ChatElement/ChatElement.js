@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Popover from "./Popover";
 import { StatusElement, Profile, Lump, onPaste } from "./SubComponents";
-import profile from "../../images/profile.png";
+import profile from "../../../../images/profile.png";
 
 const ChatElement = (props) => {
   const [showPopOver, setShowPopOver] = useState(false);

@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Whatsapp.scss";
-import profile from "./images/profile.jpg";
+import profile from "../../images/profile.png";
 import plus from "./images/plus.jpg";
 import _image from "./images/image.jpg";
 import mic from "./images/mic.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect } from "react-redux";
+import { openUploadImage } from "utils";
 
 function Whatsapp(props) {
+  const onChange = (e) => {
+    openUploadImage(e, (fileReader) => {
+      setProfileImage(fileReader.result);
+    });
+  };
+  const [profileImage, setProfileImage] = useState(profile);
   return (
     <div className="whatsapp">
       <div className="background-repeat" />
       <header>
         <div className="arrow-left" />
-        <img src={profile} alt="profile" className="profile" />
+        <label>
+          <img src={profileImage} alt="profile" className="profile" />
+          <input type="file" className="disable" onChange={onChange} />
+        </label>
+
         <div
           className="name"
           contentEditable="true"

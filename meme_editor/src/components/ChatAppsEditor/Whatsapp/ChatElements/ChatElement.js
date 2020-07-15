@@ -20,7 +20,10 @@ const mapImageStatus = {
 const ChatElementRight = (props) => {
   const [isPopupOpening, setOpenPopup] = useState(false);
   const [status, setStatus] = useState(STATUS_READ);
-  const onStatusClick = (e) => setStatus(e.target.getAttribute("status"));
+  const onStatusClick = (status) => {
+    setStatus(status);
+    setOpenPopup(false);
+  };
   const openStatusPopup = () => setOpenPopup(true);
   const closeStatusPopup = () => setOpenPopup(false);
 

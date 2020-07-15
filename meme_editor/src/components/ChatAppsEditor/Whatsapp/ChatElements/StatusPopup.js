@@ -8,6 +8,8 @@ import sending from "../images/sending.png";
 import sent from "../images/sent.png";
 import read from "../images/read.png";
 import useClickOutside from "hooks/useClickOutside";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const StatusPopup = (props) => {
   const ref = useRef(null);
@@ -15,7 +17,31 @@ const StatusPopup = (props) => {
   return (
     <div ref={ref}>
       <div className="status-popover">
-        <img
+        <ButtonGroup
+          orientation="vertical"
+          color="primary"
+          aria-label="vertical outlined primary button group"
+        >
+          <Button
+            onClick={() => props.onStatusClick(STATUS_SENDING)}
+            variant={props.status === STATUS_SENDING ? "contained" : "outlined"}
+          >
+            <img src={sending} alt="sending" width="20" />
+          </Button>
+          <Button
+            onClick={() => props.onStatusClick(STATUS_SENT)}
+            variant={props.status === STATUS_SENT ? "contained" : "outlined"}
+          >
+            <img src={sent} alt="sent" width="20" />
+          </Button>
+          <Button
+            onClick={() => props.onStatusClick(STATUS_READ)}
+            variant={props.status === STATUS_READ ? "contained" : "outlined"}
+          >
+            <img src={read} alt="read" width="30" />
+          </Button>
+        </ButtonGroup>
+        {/* <img
           src={sending}
           alt="sending"
           width="20"
@@ -38,7 +64,7 @@ const StatusPopup = (props) => {
           status={STATUS_READ}
           className={props.status === STATUS_READ ? "selected" : ""}
           onClick={props.onStatusClick}
-        />
+        /> */}
       </div>
     </div>
   );

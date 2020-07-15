@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import useClickOutside from "hooks/useClickOutside";
+import { openUploadImage } from "utils";
 
 const ChildPopover = (props) => {
   const ref = useRef(null);
@@ -12,17 +13,10 @@ const ChildPopover = (props) => {
   };
   const onChange = (e) => {
     props.close();
-    const target = e.target || window.event.srcElement;
-    const files = target.files;
-    
-    if (FileReader && files && files.length) {
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        props.setProfileImage(fileReader.result);
-        props.setShowProfile(true);
-      };
-      fileReader.readAsDataURL(files[0]);
-    }
+    openUploadImage(e, (fileReader) => {
+      props.setProfileImage(fileReader.result);
+      props.setShowProfile(true);
+    });
   };
   return (
     <div ref={ref} className="popover">
