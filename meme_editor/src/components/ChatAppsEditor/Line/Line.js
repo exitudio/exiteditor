@@ -24,9 +24,17 @@ function Line(props) {
         <img src={headerRight} alt="header-right" />
       </header>
       <div className="chat-body">
-        {props.chatElements.map((chatElement) => (
-          <ChatElement {...chatElement} key={chatElement.id} />
-        ))}
+        {props.chatElements.map((chatElement, i, chatElements) => {
+          const prevSide = chatElements[i-1] && chatElements[i-1].side;
+          const isPrimary = prevSide !== chatElement.side;
+          return (
+            <ChatElement
+              {...chatElement}
+              isPrimary={isPrimary}
+              key={chatElement.id}
+            />
+          );
+        })}
         <AddChatElements side="right" />
         <AddChatElements side="left" />
       </div>

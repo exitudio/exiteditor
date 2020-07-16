@@ -22,7 +22,15 @@ function Modal(props) {
             >
               Close
             </Button>
-            <Button variant="contained" color="primary" onClick={props.onSave}>
+            <Button
+              component="a"
+              href={props.saveHref}
+              variant="contained"
+              color="primary"
+              onClick={props.onSave}
+              download="chat.jpeg"
+              style={{ marginRight: "20px" }}
+            >
               Save
             </Button>
           </footer>

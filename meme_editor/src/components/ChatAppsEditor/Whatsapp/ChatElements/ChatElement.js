@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import lumpRight from "../images/lump-right.png";
-import lumpLeft from "../images/lump-left.png";
 import sending from "../images/sending.png";
 import sent from "../images/sent.png";
 import read from "../images/read.png";
@@ -10,6 +8,7 @@ import {
   STATUS_READ,
 } from "constants/chatConstant";
 import StatusPopup from "./StatusPopup";
+import { Lump } from "./SubComponents";
 
 const mapImageStatus = {
   [STATUS_SENDING]: sending,
@@ -17,7 +16,7 @@ const mapImageStatus = {
   [STATUS_READ]: read,
 };
 
-const ChatElementRight = (props) => {
+const ChatElementRight = ({ side, isPrimary }) => {
   const [isPopupOpening, setOpenPopup] = useState(false);
   const [status, setStatus] = useState(STATUS_READ);
   const onStatusClick = (status) => {
@@ -36,14 +35,10 @@ const ChatElementRight = (props) => {
     document.execCommand("insertHTML", false, text);
   };
   return (
-    <div className={`chat-element ${props.side}`}>
+    <div className={`chat-element ${side}`}>
       <div className="text-wrapper">
-        {props.side === "left" ? (
-          <img src={lumpLeft} alt="lump-left" className="lump" />
-        ) : (
-          <img src={lumpRight} alt="lump-right" className="lump" />
-        )}
-        <div className="all-text">
+        <Lump side={side} isPrimary={isPrimary} />
+        <div className={`all-text ${isPrimary ? "primary" : ""}`}>
           <div
             contentEditable="true"
             suppressContentEditableWarning={true}
@@ -59,7 +54,7 @@ const ChatElementRight = (props) => {
             >
               9.12 AM
             </span>
-            {props.side === "right" ? (
+            {side === "right" ? (
               <img
                 src={mapImageStatus[status]}
                 alt="status"

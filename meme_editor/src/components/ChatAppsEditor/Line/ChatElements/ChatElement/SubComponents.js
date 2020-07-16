@@ -1,6 +1,7 @@
 import React from "react";
 import lumpRight from "../../images/lump-right.png";
 import lumpLeft from "../../images/lump-left.png";
+import { openUploadImage } from "utils";
 
 // for prevent pasting style
 export const onPaste = (e) => {
@@ -33,25 +34,23 @@ export const StatusElement = (props) => {
 export const Profile = ({
   side,
   showProfile,
-  setShowProfile,
-  showPopOver,
-  setShowPopOver,
+  setProfileImage,
   src,
 }) => {
-  let onClick;
-  if (side === "left") {
-    onClick = () => setShowPopOver(!showPopOver);
-  } else {
-    onClick = () => setShowProfile(!showProfile);
-  }
   if (side === "left" && showProfile) {
-    return <img src={src} alt="img" onClick={onClick} className="profile" />;
-  } else {
+    const onChange = (e) => {
+      openUploadImage(e, (fileReader) => {
+        setProfileImage(fileReader.result);
+      });
+    };
     return (
-      <div className="dummy-profile-wrapper">
-        <div className="profile" onClick={onClick} data-remove-from-image />
-      </div>
+      <label>
+        <img src={src} alt="img" className="profile" />;
+        <input type="file" className="disable" onChange={onChange} />
+      </label>
     );
+  } else {
+    return <div className="dummy-profile-wrapper"></div>;
   }
 };
 

@@ -12,27 +12,36 @@ import domtoimage from "dom-to-image";
 
 function App() {
   const [isOpening, setOpen] = useState(false);
+  const [saveHref, setSaveHref] = useState("#");
   const onPreviewClick = () => {
     const rootImage = document.getElementById("root-image");
-    rootImage.style.cssText = "transform: unset;";
     const disableElements = document.querySelectorAll(
       '[data-remove-from-image="true"]'
     );
     for (let i = 0; i < disableElements.length; i++) {
       disableElements[i].style.display = "none";
     }
+    const disableStyleElements = document.querySelectorAll(
+      "[data-remove-style]"
+    );
+    // for (let i = 0; i < disableStyleElements.length; i++) {
+    //   const disableStyle = disableStyleElements[i].getAttribute(
+    //     "data-remove-style"
+    //   );
+    //   disableStyleElements[i].style[disableStyle] = "unset";
+    // }
 
     domtoimage
       .toJpeg(rootImage)
       .then(function (dataUrl) {
         var img = new Image();
         img.src = dataUrl;
-        img.style["max-height"] = "600px";
-        rootImage.style.cssText = "transform: transform: scale(0.5);";
+        img.style["max-height"] = "calc(100vh - 300px)";
         document.getElementById("preview-image").appendChild(img);
         for (let i = 0; i < disableElements.length; i++) {
           disableElements[i].style.display = "unset";
         }
+        setSaveHref(dataUrl);
       })
       .catch(function (error) {
         console.error("oops, something went wrong!", error);
@@ -57,7 +66,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <ChatAppsEditor />
-      <Modal show={isOpening} onCancel={onClose}>
+      <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
         <div id="preview-image" />
       </Modal>
     </div>
