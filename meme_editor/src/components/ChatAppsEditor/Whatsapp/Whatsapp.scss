@@ -73,12 +73,12 @@ $blue: rgb(33, 150, 243);
       padding-left: 7%;
       padding-right: 7%;
       margin-bottom: 24px;
-      align-items: flex-end;
       display: flex;
-      flex-direction: column;
+      flex-direction: row-reverse;
+      align-items: flex-end;
       position: relative;
       &.left {
-        align-items: flex-start;
+        flex-direction: row;
         .text-wrapper {
           .all-text {
             background-color: white;

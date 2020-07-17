@@ -10,6 +10,15 @@ import Modal from "./reuseComponents/Modal";
 
 import domtoimage from "dom-to-image";
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import blue from "@material-ui/core/colors/blue";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+});
+
 function App() {
   const [isOpening, setOpen] = useState(false);
   const [saveHref, setSaveHref] = useState("#");
@@ -55,20 +64,22 @@ function App() {
   };
   return (
     <div className="flex-grow-1">
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className="flex-grow-1">
-            Editor
-          </Typography>
-          <Button color="inherit" onClick={onPreviewClick}>
-            Preview & Save
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <ChatAppsEditor />
-      <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
-        <div id="preview-image" />
-      </Modal>
+      <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className="flex-grow-1">
+              Editor
+            </Typography>
+            <Button color="inherit" onClick={onPreviewClick}>
+              Preview & Save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <ChatAppsEditor />
+        <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
+          <div id="preview-image" />
+        </Modal>
+      </ThemeProvider>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { StatusElement, Profile, Lump, onPaste } from "./SubComponents";
+import { Profile, onPaste } from "./SubComponents";
 import profile from "../../../../images/profile.png";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 
-const ChatElement = ({ side, isPrimary, onDelete }) => {
+const ChatElement = ({ side, isTop, isBottom, onDelete }) => {
   const [profileImage, setProfileImage] = useState(profile);
   const [isShowingDelete, setShowingDelete] = useState(false);
+
   return (
     <div
       className={`chat-element ${side}`}
@@ -16,14 +17,16 @@ const ChatElement = ({ side, isPrimary, onDelete }) => {
     >
       <Profile
         side={side}
-        showProfile={isPrimary}
+        showProfile={isBottom}
         setProfileImage={setProfileImage}
         src={profileImage}
       />
-
       <div className="text-wrapper">
-        <div className="all-text">
-          <Lump side={side} showProfile={isPrimary} />
+        <div
+          className={`all-text ${isTop ? "is-top" : ""} ${
+            isBottom ? "is-bottom" : ""
+          }`}
+        >
           <div
             contentEditable="true"
             suppressContentEditableWarning={true}
@@ -33,13 +36,12 @@ const ChatElement = ({ side, isPrimary, onDelete }) => {
           </div>
         </div>
       </div>
-      <StatusElement side={side} />
       <div class={`${isShowingDelete ? "" : "disable"}`}>
         <Tooltip title="Delete">
           <Fab
             color="secondary"
             onClick={onDelete}
-            style={{ flexShrink: 0 }}
+            style={{ margin: "0 20px 2px 20px" }}
             data-remove-from-image
           >
             <DeleteIcon style={{ width: 30, height: 30, color: "white" }} />

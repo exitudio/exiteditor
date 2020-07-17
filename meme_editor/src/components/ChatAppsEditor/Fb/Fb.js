@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import "./Whatsapp.scss";
-import profile from "../../images/profile.png";
-import plus from "./images/plus.jpg";
-import _image from "./images/image.jpg";
-import mic from "./images/mic.jpg";
+import "./Fb.scss";
+import headerLeft from "./images/header-left.jpg";
+import headerRight from "./images/header-right.jpg";
+import footerLeft from "./images/footer-left.jpg";
+import footerRight from "./images/footer-right.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect, useDispatch } from "react-redux";
+import profile from "../../images/profile.png";
 import { openUploadImage } from "utils";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
 
-function Whatsapp(props) {
+function Line(props) {
   const onChange = (e) => {
     openUploadImage(e, (fileReader) => {
       setProfileImage(fileReader.result);
@@ -22,15 +23,14 @@ function Whatsapp(props) {
   };
   const [profileImage, setProfileImage] = useState(profile);
   return (
-    <div className="whatsapp">
+    <div className="fb">
       <div className="background-repeat" />
       <header>
-        <div className="arrow-left" />
+        <img src={headerLeft} alt="header-left" />
         <label>
           <img src={profileImage} alt="profile" className="profile" />
           <input type="file" className="disable" onChange={onChange} />
         </label>
-
         <div
           className="name"
           contentEditable="true"
@@ -38,16 +38,19 @@ function Whatsapp(props) {
         >
           Lisa
         </div>
-        <div className="icon-right" />
+        <img src={headerRight} alt="header-right" />
       </header>
       <div className="chat-body">
         {props.chatElements.map((chatElement, i, chatElements) => {
           const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
-          const isPrimary = prevSide !== chatElement.side;
+          const nextSide = chatElements[i + 1] && chatElements[i + 1].side;
+          const isTop = prevSide !== chatElement.side;
+          const isBottom = nextSide !== chatElement.side;
           return (
             <ChatElement
               {...chatElement}
-              isPrimary={isPrimary}
+              isTop={isTop}
+              isBottom={isBottom}
               key={chatElement.id}
               onDelete={() => deleteElement(chatElement.id)}
             />
@@ -57,10 +60,9 @@ function Whatsapp(props) {
         <AddChatElements side="left" />
       </div>
       <footer>
-        <img src={plus} alt="plus" className="plus" />
-        <div className="text-box"></div>
-        <img src={_image} alt="img" className="img" />
-        <img src={mic} alt="mic" className="mic" />
+        <img src={footerLeft} alt="footer-left" />
+        <div className="mid" />
+        <img src={footerRight} alt="footer-right" />
       </footer>
     </div>
   );
@@ -69,4 +71,4 @@ function Whatsapp(props) {
 const mapStateToProps = (state) => ({
   chatElements: state.chatApps.chatElements,
 });
-export default connect(mapStateToProps)(Whatsapp);
+export default connect(mapStateToProps)(Line);

@@ -6,9 +6,14 @@ import footerLeft from "./images/footer-left.jpg";
 import footerRight from "./images/footer-right.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
 
 function Line(props) {
+  const dispatch = useDispatch();
+  const deleteElement = (id) => {
+    dispatch(deleteChat(id));
+  };
   return (
     <div className="line">
       <div className="background-repeat" />
@@ -25,13 +30,14 @@ function Line(props) {
       </header>
       <div className="chat-body">
         {props.chatElements.map((chatElement, i, chatElements) => {
-          const prevSide = chatElements[i-1] && chatElements[i-1].side;
+          const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
           const isPrimary = prevSide !== chatElement.side;
           return (
             <ChatElement
               {...chatElement}
               isPrimary={isPrimary}
               key={chatElement.id}
+              onDelete={() => deleteElement(chatElement.id)}
             />
           );
         })}

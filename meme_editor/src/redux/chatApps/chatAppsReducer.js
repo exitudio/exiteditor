@@ -1,4 +1,8 @@
-import { CHAT_APPS_ADD_CHAT, CHAT_APPS_UPDATE_CHAT } from "../actionTypes";
+import {
+  CHAT_APPS_ADD_CHAT,
+  CHAT_APPS_DELETE_CHAT,
+  CHAT_APPS_UPDATE_CHAT,
+} from "../actionTypes";
 import { STATUS_READ } from "../../constants/chatConstant";
 import initialState from "../initialState";
 
@@ -15,8 +19,19 @@ const applicationReducer = (state = initialState.chatApps, action) => {
       };
       id += 1;
       return {
-        ...initialState.chatApps,
+        ...state,
         chatElements: [...state.chatElements, newChatElement],
+      };
+    }
+
+    case CHAT_APPS_DELETE_CHAT: {
+      const id = action.payload;
+      const newChatElements = [...state.chatElements].filter((element) => {
+        return element.id !== id;
+      });
+      return {
+        ...state,
+        chatElements: newChatElements,
       };
     }
 
@@ -26,7 +41,7 @@ const applicationReducer = (state = initialState.chatApps, action) => {
       newChatElements[id] = { ...newChatElements[id] };
       newChatElements[id][key] = value;
       return {
-        ...initialState.chatApps,
+        ...state,
         chatElements: newChatElements,
       };
     }

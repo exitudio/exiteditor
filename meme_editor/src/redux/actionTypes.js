@@ -1,4 +1,5 @@
 export const CHAT_APPS_ADD_CHAT = "CHAT_APPS_ADD_CHAT";
+export const CHAT_APPS_DELETE_CHAT = "CHAT_APPS_DELETE_CHAT";
 export const CHAT_APPS_UPDATE_CHAT = "CHAT_APPS_UPDATE_CHAT";
 
 // application
