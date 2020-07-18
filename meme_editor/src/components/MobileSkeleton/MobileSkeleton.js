@@ -1,19 +1,26 @@
 import React from "react";
 import "./MobileSkeleton.scss";
-import headbarLeft from "./images/head-bar-left.jpg";
-import headbarMid from "./images/head-bar-mid.jpg";
-import headbarRight from "./images/head-bar-right.jpg";
+import signal from "./images/signal.png";
+import wifi from "./images/wifi.png";
+import gps from "./images/gps.png";
+import battery from "./images/battery.png";
 import ScaleComponent from "../reuseComponents/ScaleComponent";
 
 function MobileSkeleton(props) {
   return (
     <div className="all-mobile">
       <ScaleComponent scale={0.5}>
-        <div id="root-image" className="mobile-skeleton" data-remove-style="border">
+        <div
+          id="root-image"
+          className="mobile-skeleton"
+          data-remove-style="border"
+        >
           <header>
-            <img src={headbarLeft} alt="header-bar-left" />
-            <img src={headbarMid} alt="header-bar-mid" />
-            <img src={headbarRight} alt="header-bar-right" />
+            <img src={signal} alt="signal" />
+            <img src={wifi} alt="wifi" />
+            <img src={gps} alt="gps" />
+            <img src={battery} alt="battery" />
+
           </header>
           {props.children}
         </div>

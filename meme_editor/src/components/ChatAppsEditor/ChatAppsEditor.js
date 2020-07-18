@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Whatsapp from "./Whatsapp";
 import Line from "./Line";
 import Fb from "./Fb";
+import WeChat from "./WeChat";
 import "./ChatAppsEditor.scss";
 import MobileSkeleton from "../MobileSkeleton";
 import Button from "@material-ui/core/Button";
@@ -9,10 +10,10 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import lineImage from "../images/line.png";
 import whatsappImage from "../images/whatsapp.png";
 import fb from "../images/fb.jpg";
-import iMessage from "../images/iMessage.png";
+import wechat from "../images/wechat.png";
 
 function ChatAppsEditor() {
-  const [App, setApp] = useState(Whatsapp);
+  const [App, setApp] = useState(WeChat);
   return (
     <div className="chat-app">
       <div className="app-selector">
@@ -41,9 +42,9 @@ function ChatAppsEditor() {
           </Button>
           <Button
             variant={App === null ? "contained" : "text"}
-            onClick={() => setApp(null)}
+            onClick={() => setApp(WeChat)}
           >
-            <img src={iMessage} alt="line" />
+            <img src={wechat} alt="line" />
           </Button>
         </ButtonGroup>
       </div>

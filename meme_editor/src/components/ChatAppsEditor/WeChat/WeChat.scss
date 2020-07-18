@@ -1,0 +1,128 @@
+$elment-host-background: #95ec69;
+$grey-1: rgba(0, 0, 0, 0.45);
+$blue: rgb(33, 150, 243);
+$header-background-color: #fff;
+$radius-small: 8px;
+$radius-big: 35px;
+
+.wechat {
+  font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu,
+    Cantarell, Fira Sans, sans-serif;
+  width: 650px;
+  min-height: 1000px; //1294px;
+  background-color: #ededed;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  header {
+    background-image: url(./images/header-bg.jpg);
+    display: flex;
+    box-sizing: border-box;
+    height: 89px;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    .name {
+      padding-left: 28px;
+      font-size: 34px;
+      color: black;
+      flex-grow: 1;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  .chat-body {
+    flex-grow: 1;
+    padding-top: 20px;
+    .chat-element {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-bottom: 24px;
+      position: relative;
+
+      display: flex;
+      align-items: flex-end;
+      flex-direction: row-reverse;
+      &.left {
+        flex-direction: row;
+        .text-wrapper {
+          flex-direction: row;
+          .all-text {
+            background-color: white;
+            .lump {
+              position: absolute;
+              top: 28px;
+              left: -10px;
+              z-index: 100;
+            }
+          }
+          .text-status {
+            text-align: left;
+          }
+        }
+      }
+      .profile {
+        border-radius: 4px;
+        width: 82px;
+        height: 82px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      .dummy-profile-wrapper {
+        width: 84px;
+        height: 56px;
+        flex-shrink: 0;
+      }
+
+      .text-wrapper {
+        max-width: calc(100% - 120px);
+        margin: 0 24px 0 24px;
+        .all-text {
+          position: relative;
+          padding: 22px 22px 24px 22px;
+          border-radius: 4px;
+          color: black;
+          background-color: $elment-host-background;
+          font-size: 24px;
+          line-height: 38px;
+          .lump {
+            position: absolute;
+            top: 28px;
+            right: -10px;
+            z-index: 100;
+          }
+        }
+      }
+      &.add {
+        cursor: pointer;
+        margin-top: 40px;
+        &.left {
+          float: left;
+        }
+        &.right {
+          float: right;
+        }
+        .text-wrapper {
+          max-width: unset;
+          .all-text {
+            padding: 10px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
+          }
+        }
+      }
+    }
+  }
+  footer {
+    height: 112px;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    .mid {
+      flex-grow: 1;
+    }
+    background-image: url(./images/footer-mid.jpg);
+  }
+}
