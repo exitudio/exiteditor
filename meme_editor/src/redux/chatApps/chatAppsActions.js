@@ -2,6 +2,7 @@ import {
   CHAT_APPS_ADD_CHAT,
   CHAT_APPS_DELETE_CHAT,
   CHAT_APPS_UPDATE_CHAT,
+  CHAT_APPS_RESET,
 } from "../actionTypes";
 
 export const addChat = (side) => ({
@@ -17,4 +18,8 @@ export const deleteChat = (id) => ({
 export const updateChat = (id, key, value) => ({
   type: CHAT_APPS_UPDATE_CHAT,
   payload: { id, key, value },
+});
+
+export const resetChat = () => ({
+  type: CHAT_APPS_RESET,
 });

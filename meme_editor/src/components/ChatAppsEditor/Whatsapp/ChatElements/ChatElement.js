@@ -12,6 +12,7 @@ import { Lump } from "./SubComponents";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
+import { onPaste } from "../../../../utils";
 
 const mapImageStatus = {
   [STATUS_SENDING]: sending,
@@ -29,15 +30,6 @@ const ChatElementRight = ({ side, isPrimary, onDelete }) => {
   const openStatusPopup = () => setOpenPopup(true);
   const closeStatusPopup = () => setOpenPopup(false);
   const [isShowingDelete, setShowingDelete] = useState(false);
-
-  // for prevent pasting style
-  const onPaste = (e) => {
-    e.preventDefault();
-    // get text representation of clipboard
-    var text = (e.originalEvent || e).clipboardData.getData("text/plain");
-    // insert text manually
-    document.execCommand("insertHTML", false, text);
-  };
   return (
     <div
       className={`chat-element ${side}`}
@@ -56,6 +48,7 @@ const ChatElementRight = ({ side, isPrimary, onDelete }) => {
           </div>
           <div className="status">
             <span
+              className="time"
               contentEditable="true"
               suppressContentEditableWarning={true}
               onPaste={onPaste}

@@ -1,16 +1,7 @@
 import React from "react";
 import lumpRight from "../../images/lump-right.png";
 import lumpLeft from "../../images/lump-left.png";
-import { openUploadImage } from "utils";
-
-// for prevent pasting style
-export const onPaste = (e) => {
-  e.preventDefault();
-  // get text representation of clipboard
-  var text = (e.originalEvent || e).clipboardData.getData("text/plain");
-  // insert text manually
-  document.execCommand("insertHTML", false, text);
-};
+import { openUploadImage, onPaste } from "utils";
 
 const contentEditable = {
   contentEditable: "true",

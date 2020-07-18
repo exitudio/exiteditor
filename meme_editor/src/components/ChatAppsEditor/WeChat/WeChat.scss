@@ -6,8 +6,6 @@ $radius-small: 8px;
 $radius-big: 35px;
 
 .wechat {
-  font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu,
-    Cantarell, Fira Sans, sans-serif;
   width: 650px;
   min-height: 1000px; //1294px;
   background-color: #ededed;
@@ -42,7 +40,7 @@ $radius-big: 35px;
       position: relative;
 
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       flex-direction: row-reverse;
       &.left {
         flex-direction: row;

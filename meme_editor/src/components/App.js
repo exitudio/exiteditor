@@ -30,9 +30,9 @@ function App() {
     for (let i = 0; i < disableElements.length; i++) {
       disableElements[i].style.display = "none";
     }
-    const disableStyleElements = document.querySelectorAll(
-      "[data-remove-style]"
-    );
+    // const disableStyleElements = document.querySelectorAll(
+    //   "[data-remove-style]"
+    // );
     // for (let i = 0; i < disableStyleElements.length; i++) {
     //   const disableStyle = disableStyleElements[i].getAttribute(
     //     "data-remove-style"
@@ -63,7 +63,7 @@ function App() {
     previewImage.removeChild(previewImage.firstChild);
   };
   return (
-    <div className="flex-grow-1">
+    <div className="app flex-grow-1">
       <ThemeProvider theme={theme}>
         <AppBar position="static">
           <Toolbar>

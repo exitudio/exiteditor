@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./WeChat.scss";
 import headerLeft from "./images/header-left.jpg";
 import headerRight from "./images/header-right.jpg";

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { StatusElement, Profile, Lump, onPaste } from "./SubComponents";
+import { StatusElement, Profile, Lump } from "./SubComponents";
 import profile from "../../../../images/profile.png";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
+import { onPaste } from "../../../../../utils";
 
 const ChatElement = ({ side, isPrimary, onDelete }) => {
   const [profileImage, setProfileImage] = useState(profile);

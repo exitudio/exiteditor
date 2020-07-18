@@ -2,12 +2,13 @@ import {
   CHAT_APPS_ADD_CHAT,
   CHAT_APPS_DELETE_CHAT,
   CHAT_APPS_UPDATE_CHAT,
+  CHAT_APPS_RESET,
 } from "../actionTypes";
 import { STATUS_READ } from "../../constants/chatConstant";
 import initialState from "../initialState";
 
 let id = 0;
-const applicationReducer = (state = initialState.chatApps, action) => {
+const chatAppsReducer = (state = initialState.chatApps, action) => {
   switch (action.type) {
     case CHAT_APPS_ADD_CHAT: {
       const newChatElement = {
@@ -46,9 +47,16 @@ const applicationReducer = (state = initialState.chatApps, action) => {
       };
     }
 
+    case CHAT_APPS_RESET: {
+      return {
+        ...state,
+        chatElements: initialState.chatApps.chatElements,
+      };
+    }
+
     default:
       return state;
   }
 };
 
-export default applicationReducer;
+export default chatAppsReducer;
