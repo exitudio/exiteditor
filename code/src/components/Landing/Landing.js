@@ -71,6 +71,12 @@ const Landing = () => {
               image={uploadImage}
               alt="upload"
             />
+            <Detail
+              head="High Resolution"
+              deatail="Render images with high resolution algorithm"
+              image={multipleChatImage}
+              alt="upload"
+            />
           </Grid>
         </div>
       </article>
