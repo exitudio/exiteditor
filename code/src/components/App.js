@@ -12,6 +12,8 @@ import domtoimage from "dom-to-image";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
+import appIcon from "./images/app-icon.png";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -64,22 +66,35 @@ function App() {
   };
   return (
     <div className="app flex-grow-1">
-      <ThemeProvider theme={theme}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" className="flex-grow-1">
-              Editor
-            </Typography>
-            <Button color="inherit" onClick={onPreviewClick}>
-              Preview & Save
-            </Button>
-          </Toolbar>
-        </AppBar>
-        <ChatAppsEditor />
-        <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
-          <div id="preview-image" />
-        </Modal>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <AppBar position="static">
+            <Toolbar>
+              <Button component={Link} to="/">
+                <img src={appIcon} alt="app" className="app-icon" />
+                <Typography
+                  variant="h6"
+                  style={{ marginTop: 10, color: "white" }}
+                >
+                  Chat Editor
+                </Typography>
+              </Button>
+              <div className="flex-grow-1"></div>
+              <Button color="inherit" onClick={onPreviewClick}>
+                Preview & Save
+              </Button>
+            </Toolbar>
+          </AppBar>
+          <Switch>
+            <Route path={["/chat-generator/:appId", "/chat-generator", "/"]}>
+              <ChatAppsEditor />
+            </Route>
+          </Switch>
+          <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
+            <div id="preview-image" />
+          </Modal>
+        </ThemeProvider>
+      </Router>
     </div>
   );
 }

@@ -35,7 +35,7 @@ const ChatElement = ({ side, isPrimary, onDelete }) => {
         </div>
       </div>
       <StatusElement side={side} />
-      <div class={`${isShowingDelete ? "" : "disable"}`}>
+      <div className={`${isShowingDelete ? "" : "disable"}`}>
         <Tooltip title="Delete">
           <Fab
             color="secondary"

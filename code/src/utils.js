@@ -25,3 +25,7 @@ export const contentEditableProps = {
   suppressContentEditableWarning: true,
   onPaste: onPaste,
 };
+
+export const getUrlWithoutParam = (pathname) => {
+  return pathname.slice(0, pathname.lastIndexOf("/"));
+};
