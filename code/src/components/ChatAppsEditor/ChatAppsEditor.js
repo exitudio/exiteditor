@@ -18,7 +18,6 @@ function ChatAppsEditor() {
   const dispatch = useDispatch();
   useDidUpdate(() => {
     if (prevAppId !== appId) {
-      console.log(prevAppId, appId);
       dispatch(resetChat());
     }
   });

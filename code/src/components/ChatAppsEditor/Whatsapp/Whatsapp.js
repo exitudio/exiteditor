@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Whatsapp.scss";
-import profile from "../../images/profile.png";
+import profile from "../../images/profile.jpg";
 import plus from "./images/plus.jpg";
 import _image from "./images/image.jpg";
 import mic from "./images/mic.jpg";

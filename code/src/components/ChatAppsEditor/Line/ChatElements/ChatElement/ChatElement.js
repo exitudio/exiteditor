@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusElement, Profile, Lump } from "./SubComponents";
-import profile from "../../../../images/profile.png";
+import profile from "../../../../images/profile.jpg";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";

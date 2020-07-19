@@ -7,7 +7,7 @@ import footerRight from "./images/footer-right.jpg";
 import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect, useDispatch } from "react-redux";
-import profile from "../../images/profile.png";
+import profile from "../../images/profile.jpg";
 import { openUploadImage } from "utils";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
 

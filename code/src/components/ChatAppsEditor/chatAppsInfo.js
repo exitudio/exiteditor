@@ -3,7 +3,7 @@ import Line from "./Line";
 import Fb from "./Fb";
 import WeChat from "./WeChat";
 import lineImage from "../images/line.png";
-import whatsappImage from "../images/whatsapp.png";
+import whatsappImage from "../images/whatsapp.jpg";
 import fb from "../images/fb.jpg";
 import wechat from "../images/wechat.png";
 
