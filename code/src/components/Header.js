@@ -5,17 +5,17 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import appIcon from "./images/app-icon.png";
 import domtoimage from "dom-to-image";
-
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import Modal from "./reuseComponents/Modal";
 
 export default function Header() {
   const [isOpening, setOpen] = useState(false);
   const [saveHref, setSaveHref] = useState("#");
+  const location = useLocation();
   const onPreviewClick = () => {
-    window.ga("send", "event", {
-      eventCategory: "Preview",
-      eventAction: "Open",
+    window.ga("send", {
+      hitType: "pageView",
+      page: location.pathname + "/preview",
     });
     const rootImage = document.getElementById("root-image");
     const disableElements = document.querySelectorAll(
