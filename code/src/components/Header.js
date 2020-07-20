@@ -13,6 +13,10 @@ export default function Header() {
   const [isOpening, setOpen] = useState(false);
   const [saveHref, setSaveHref] = useState("#");
   const onPreviewClick = () => {
+    window.ga("send", "event", {
+      eventCategory: "Preview",
+      eventAction: "Open",
+    });
     const rootImage = document.getElementById("root-image");
     const disableElements = document.querySelectorAll(
       '[data-remove-from-image="true"]'
@@ -43,14 +47,29 @@ export default function Header() {
         setSaveHref(dataUrl);
       })
       .catch(function (error) {
+        window.ga("send", "event", {
+          eventCategory: "Preview",
+          eventAction: "Error",
+        });
         console.error("oops, something went wrong!", error);
       });
     setOpen(true);
   };
   const onClose = () => {
+    window.ga("send", "event", {
+      eventCategory: "Preview",
+      eventAction: "Close",
+    });
     setOpen(false);
     const previewImage = document.getElementById("preview-image");
     previewImage.removeChild(previewImage.firstChild);
+  };
+  const onSave = () => {
+    window.ga("send", "event", {
+      eventCategory: "Preview",
+      eventAction: "Save",
+    });
+    setOpen(false);
   };
   const match = useRouteMatch();
 
@@ -59,7 +78,7 @@ export default function Header() {
       <Toolbar>
         <Button component={Link} to="/">
           <img src={appIcon} alt="app" className="app-icon" />
-          <Typography variant="h7" style={{ marginTop: 5, color: "white" }}>
+          <Typography style={{ marginTop: 5, color: "white" }}>
             Chat Editor
           </Typography>
         </Button>
@@ -74,7 +93,12 @@ export default function Header() {
           </Button>
         ) : null}
       </Toolbar>
-      <Modal show={isOpening} onCancel={onClose} saveHref={saveHref}>
+      <Modal
+        show={isOpening}
+        onCancel={onClose}
+        saveHref={saveHref}
+        onSave={onSave}
+      >
         <div id="preview-image" />
       </Modal>
     </AppBar>

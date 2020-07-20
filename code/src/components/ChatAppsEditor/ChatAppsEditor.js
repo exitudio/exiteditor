@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ChatAppsEditor.scss";
 import MobileSkeleton from "../MobileSkeleton";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { useDispatch } from "react-redux";
 import { resetChat } from "../../redux/chatApps/chatAppsActions";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import chatAppsInfo from "./chatAppsInfo";
 import usePrevious from "../../hooks/usePrevious";
 import useDidUpdate from "../../hooks/useDidUpdate";
@@ -16,10 +16,16 @@ function ChatAppsEditor() {
   const currentChatAppInfo = chatAppsInfo[appId];
   const prevAppId = usePrevious(appId);
   const dispatch = useDispatch();
+  const location = useLocation();
   useDidUpdate(() => {
-    if (prevAppId !== appId) {
-      dispatch(resetChat());
-    }
+    prevAppId !== appId && dispatch(resetChat());
+  });
+  useEffect(() => {
+    prevAppId !== appId &&
+      window.ga("send", {
+        hitType: "pageView",
+        page: location.pathname,
+      });
   });
   return (
     <div className="chat-app">

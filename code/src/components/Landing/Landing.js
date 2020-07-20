@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Landing.scss";
 import Grid from "@material-ui/core/Grid";
 import chatsImage from "./images/chats.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import multipleChatImage from "./images/multiple-chats.jpg";
 import statusImage from "./images/status.jpg";
@@ -16,7 +16,7 @@ const Detail = ({ head, deatail, image, alt }) => {
         <img src={image} className="detail-image" alt={alt} />
         <div className="text">
           <h2>{head}</h2>
-          <div class="text-detail">{deatail}</div>
+          <div className="text-detail">{deatail}</div>
         </div>
       </Paper>
     </Grid>
@@ -24,6 +24,10 @@ const Detail = ({ head, deatail, image, alt }) => {
 };
 
 const Landing = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.ga("send", { hitType: "pageView", page: location.pathname });
+  }, [location]);
   return (
     <div className="landing">
       <article className="top-article">
@@ -34,12 +38,12 @@ const Landing = () => {
                 <h1>Chat</h1>
                 <h2>Generator</h2>
                 <h4>
-                  Easy to use and support all the most famous themes, Whatsapp,
-                  Line, Facebook Messenger, Wechat
+                  Easy to use chat generator, support all the most famous chat
+                  application themes, Whatsapp, Line, Facebook Messenger, Wechat
                 </h4>
                 <div className="start-button-wrapper">
                   <Link to="chat-generator" className="start-button">
-                    Getting Start
+                    Get Start
                   </Link>
                 </div>
               </section>

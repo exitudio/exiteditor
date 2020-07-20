@@ -6,7 +6,6 @@
     max-width: 1140px;
     margin: auto;
     padding: 20px;
-    overflow: hidden;
   }
   .top-article {
     height: 600px;
@@ -48,6 +47,7 @@
     .detail {
       padding: 20px;
       width: auto;
+      height: 130px;
       display: flex;
       flex-direction: row;
       color: #555;
