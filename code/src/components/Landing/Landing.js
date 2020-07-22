@@ -38,12 +38,12 @@ const Landing = () => {
                 <h1>Chat</h1>
                 <h2>Generator</h2>
                 <h4>
-                  Easy to use chat generator, support all the most famous chat
+                  Easy to use chat generator support all the most famous chat
                   application themes, Whatsapp, Line, Facebook Messenger, Wechat
                 </h4>
                 <div className="start-button-wrapper">
-                  <Link to="chat-generator" className="start-button">
-                    Get Start
+                  <Link to="chat-generator/whatsapp" className="start-button">
+                    Get Started
                   </Link>
                 </div>
               </section>

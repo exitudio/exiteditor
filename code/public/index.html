@@ -5,13 +5,13 @@
   <!-- Google Analytics -->
   <script>
     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-    ga('create', 'UA-172992279-1', 'auto');
+    ga('create', 'UA-172992279-1', { "cookieDomain": "none" });
 
     // debugger only on local
-    // if (location.hostname == 'localhost') {
-    //   window.ga_debug = {trace: true};
-    //   ga('set', 'sendHitTask', null);
-    // }
+    if (location.hostname == 'localhost') {
+      window.ga_debug = { trace: true };
+      ga('set', 'sendHitTask', null);
+    }
     // *********************
 
   </script>
@@ -19,7 +19,10 @@
   <!-- <script async src='https://www.google-analytics.com/analytics_debug.js'></script> -->
   <!-- End Google Analytics -->
 
-
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-9908230850583734" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- End Google Adsense -->
 
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />

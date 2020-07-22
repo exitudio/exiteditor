@@ -15,13 +15,14 @@ function ChatAppsEditor() {
   appId = appId ? appId : chatAppsInfo.whatsapp.id;
   const currentChatAppInfo = chatAppsInfo[appId];
   const prevAppId = usePrevious(appId);
-  const dispatch = useDispatch();
   const location = useLocation();
+  const prevPathname = usePrevious(location.pathname);
+  const dispatch = useDispatch();
   useDidUpdate(() => {
     prevAppId !== appId && dispatch(resetChat());
   });
   useEffect(() => {
-    prevAppId !== appId &&
+    prevPathname !== location.pathname &&
       window.ga("send", {
         hitType: "pageView",
         page: location.pathname,

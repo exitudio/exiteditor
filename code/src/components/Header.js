@@ -4,55 +4,29 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import appIcon from "./images/app-icon.png";
-import domtoimage from "dom-to-image";
-import { Link, useRouteMatch, useLocation } from "react-router-dom";
+import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
 import Modal from "./reuseComponents/Modal";
+import { snapShot } from "../helpers";
 
 export default function Header() {
-  const [isOpening, setOpen] = useState(false);
+  const [isStateOpening, setStateOpen] = useState(false);
   const [saveHref, setSaveHref] = useState("#");
   const location = useLocation();
-  const onPreviewClick = () => {
-    window.ga("send", {
-      hitType: "pageView",
-      page: location.pathname + "/preview",
-    });
-    const rootImage = document.getElementById("root-image");
-    const disableElements = document.querySelectorAll(
-      '[data-remove-from-image="true"]'
-    );
-    for (let i = 0; i < disableElements.length; i++) {
-      disableElements[i].style.display = "none";
-    }
-    // const disableStyleElements = document.querySelectorAll(
-    //   "[data-remove-style]"
-    // );
-    // for (let i = 0; i < disableStyleElements.length; i++) {
-    //   const disableStyle = disableStyleElements[i].getAttribute(
-    //     "data-remove-style"
-    //   );
-    //   disableStyleElements[i].style[disableStyle] = "unset";
-    // }
+  const history = useHistory();
 
-    domtoimage
-      .toJpeg(rootImage)
-      .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        img.style["max-height"] = "calc(100vh - 300px)";
-        document.getElementById("preview-image").appendChild(img);
-        for (let i = 0; i < disableElements.length; i++) {
-          disableElements[i].style.display = "unset";
-        }
-        setSaveHref(dataUrl);
-      })
-      .catch(function (error) {
-        window.ga("send", "event", {
-          eventCategory: "Preview",
-          eventAction: "Error",
-        });
-        console.error("oops, something went wrong!", error);
-      });
+  const setOpen = (isOpening) => {
+    setStateOpen(isOpening);
+    if (isOpening) {
+      history.push(location.pathname + "/preview");
+    } else {
+      const popPreview = location.pathname.split("/preview")[0];
+      history.push(popPreview);
+      const previewImage = document.getElementById("preview-image");
+      previewImage.removeChild(previewImage.firstChild);
+    }
+  };
+  const onPreviewClick = () => {
+    snapShot("root-image", (dataUrl) => setSaveHref(dataUrl));
     setOpen(true);
   };
   const onClose = () => {
@@ -61,8 +35,6 @@ export default function Header() {
       eventAction: "Close",
     });
     setOpen(false);
-    const previewImage = document.getElementById("preview-image");
-    previewImage.removeChild(previewImage.firstChild);
   };
   const onSave = () => {
     window.ga("send", "event", {
@@ -94,7 +66,7 @@ export default function Header() {
         ) : null}
       </Toolbar>
       <Modal
-        show={isOpening}
+        show={isStateOpening}
         onCancel={onClose}
         saveHref={saveHref}
         onSave={onSave}
