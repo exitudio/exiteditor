@@ -7,7 +7,7 @@ import {
 } from "../actionTypes";
 import { STATUS_READ } from "../../constants/chatConstant";
 import initialState from "../initialState";
-import { getElementIndexById } from "../../helpers";
+import { getElementIndexById, isGroupFromElements } from "../../helpers";
 
 let id = 0;
 const chatAppsReducer = (state = initialState.chatApps, action) => {
@@ -65,6 +65,11 @@ const chatAppsReducer = (state = initialState.chatApps, action) => {
       newChatElements[index] = { ...newChatElements[index] };
       newChatElements[index].isNewReplyProfile = !newChatElements[index]
         .isNewReplyProfile;
+
+      if (isGroupFromElements(newChatElements)) {
+        newChatElements[0] = { ...newChatElements[0] };
+        newChatElements[0].isNewReplyProfile = true;
+      }
       return {
         ...state,
         chatElements: newChatElements,

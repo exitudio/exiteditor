@@ -44,11 +44,14 @@ function Fb(props) {
         {props.chatElements.map((chatElement, i, chatElements) => {
           const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
           const nextSide = chatElements[i + 1] && chatElements[i + 1].side;
-          const isTop = prevSide !== chatElement.side;
-          const isBottom = nextSide !== chatElement.side;
+          const nextIsNewReplyProfile =
+            chatElements[i + 1] && chatElements[i + 1].isNewReplyProfile;
+          const isTop =
+            prevSide !== chatElement.side || chatElement.isNewReplyProfile;
+          const isBottom = nextSide !== chatElement.side || nextIsNewReplyProfile;
           return (
             <ChatElement
-              {...chatElement}
+              chatElement={chatElement}
               isTop={isTop}
               isBottom={isBottom}
               key={chatElement.id}

@@ -8,12 +8,14 @@ import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect, useDispatch } from "react-redux";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
+import { isGroupFromElements } from "../../../helpers";
 
-function WeChat(props) {
+function WeChat({ chatElements }) {
   const dispatch = useDispatch();
   const deleteElement = (id) => {
     dispatch(deleteChat(id));
   };
+  let isGroup = isGroupFromElements(chatElements);
   return (
     <div className="wechat">
       <header>
@@ -28,11 +30,18 @@ function WeChat(props) {
         <img src={headerRight} alt="header-right" />
       </header>
       <div className="chat-body">
-        {props.chatElements.map((chatElement, i, chatElements) => {
+        {chatElements.map((chatElement, i, chatElements) => {
+          const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
+          const isPrimary =
+            !isGroup ||
+            (isGroup &&
+              (prevSide !== chatElement.side ||
+                chatElements[i].isNewReplyProfile));
           return (
             <ChatElement
-              {...chatElement}
+              chatElement={chatElement}
               key={chatElement.id}
+              isPrimary={isPrimary}
               onDelete={() => deleteElement(chatElement.id)}
             />
           );
