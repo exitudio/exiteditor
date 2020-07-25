@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { StatusElement, Profile, Lump } from "./SubComponents";
 import profile from "../../../../images/profile.jpg";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Tooltip from "@material-ui/core/Tooltip";
-import Fab from "@material-ui/core/Fab";
 import { onPaste } from "../../../../../utils";
+import EditButtons from "../../../../reuseComponents/EditButtons";
+import { contentEditableProps } from "../../../../../utils";
 
-const ChatElement = ({ side, isPrimary, onDelete }) => {
+const ChatElement = ({ chatElement, isPrimary, onDelete }) => {
+  const { side, isNewReplyProfile } = chatElement;
   const [profileImage, setProfileImage] = useState(profile);
-  const [isShowingDelete, setShowingDelete] = useState(false);
   return (
     <div
-      className={`chat-element ${side}`}
-      onMouseOver={() => setShowingDelete(true)}
-      onMouseOut={() => setShowingDelete(false)}
+      className={`chat-element ${side} ${isPrimary ? "primary" : ""}`}
     >
       <Profile
         side={side}
@@ -23,6 +20,11 @@ const ChatElement = ({ side, isPrimary, onDelete }) => {
       />
 
       <div className="text-wrapper">
+        {isNewReplyProfile ? (
+          <div {...contentEditableProps} className="profile-name">
+            Someone
+          </div>
+        ) : null}
         <div className="all-text">
           <Lump side={side} showProfile={isPrimary} />
           <div
@@ -35,18 +37,7 @@ const ChatElement = ({ side, isPrimary, onDelete }) => {
         </div>
       </div>
       <StatusElement side={side} />
-      <div className={`${isShowingDelete ? "" : "disable"}`}>
-        <Tooltip title="Delete">
-          <Fab
-            color="secondary"
-            onClick={onDelete}
-            style={{ flexShrink: 0 }}
-            data-remove-from-image
-          >
-            <DeleteIcon style={{ width: 30, height: 30, color: "white" }} />
-          </Fab>
-        </Tooltip>
-      </div>
+      <EditButtons onDelete={onDelete} chatElement={chatElement} side={side} />
     </div>
   );
 };

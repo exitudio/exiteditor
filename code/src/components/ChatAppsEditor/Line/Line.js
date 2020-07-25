@@ -8,12 +8,14 @@ import ChatElement from "./ChatElements";
 import AddChatElements from "./ChatElements/AddChatElements";
 import { connect, useDispatch } from "react-redux";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
+import { isGroupFromElements } from "../../../helpers";
 
-function Line(props) {
+function Line({ chatElements }) {
   const dispatch = useDispatch();
   const deleteElement = (id) => {
     dispatch(deleteChat(id));
   };
+  let isGroup = isGroupFromElements(chatElements);
   return (
     <div className="line">
       <div className="background-repeat" />
@@ -29,14 +31,16 @@ function Line(props) {
         <img src={headerRight} alt="header-right" />
       </header>
       <div className="chat-body">
-        {props.chatElements.map((chatElement, i, chatElements) => {
+        {chatElements.map((chatElement, i, chatElements) => {
           const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
-          const isPrimary = prevSide !== chatElement.side;
+          const isPrimary =
+            prevSide !== chatElement.side ||
+            (isGroup && chatElements[i].isNewReplyProfile);
           return (
             <ChatElement
-              {...chatElement}
               isPrimary={isPrimary}
               key={chatElement.id}
+              chatElement={chatElement}
               onDelete={() => deleteElement(chatElement.id)}
             />
           );

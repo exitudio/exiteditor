@@ -9,6 +9,7 @@ import AddChatElements from "./ChatElements/AddChatElements";
 import { connect, useDispatch } from "react-redux";
 import { openUploadImage } from "utils";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
+import { isGroupFromElements } from "../../../helpers";
 
 function Whatsapp({ chatElements }) {
   const onChange = (e) => {
@@ -20,13 +21,7 @@ function Whatsapp({ chatElements }) {
   const deleteElement = (id) => {
     dispatch(deleteChat(id));
   };
-  let isMultipleProfile = false;
-  for (let chatElement of chatElements) {
-    if (chatElement.isNewReplyProfile) {
-      isMultipleProfile = true;
-      break;
-    }
-  }
+  let isGroup = isGroupFromElements(chatElements);
   const [profileImage, setProfileImage] = useState(profile);
   return (
     <div className="whatsapp">
@@ -52,7 +47,7 @@ function Whatsapp({ chatElements }) {
           const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
           const isPrimary =
             prevSide !== chatElement.side ||
-            (isMultipleProfile && chatElements[i].isNewReplyProfile);
+            (isGroup && chatElements[i].isNewReplyProfile);
           return (
             <ChatElement
               isPrimary={isPrimary}

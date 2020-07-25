@@ -46,3 +46,12 @@ export const getElementIndexById = (elements, id) => {
     }
   }
 };
+
+export const isGroupFromElements = (elements) => {
+  for (let element of elements) {
+    if (element.isNewReplyProfile) {
+      return true;
+    }
+  }
+  return false;
+};

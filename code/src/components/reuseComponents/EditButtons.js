@@ -4,7 +4,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import { useDispatch } from "react-redux";
-import { toggleNewReplyProfile } from "../../../../redux/chatApps/chatAppsActions";
+import { toggleNewReplyProfile } from "../../redux/chatApps/chatAppsActions";
 
 function EditButtons({ onDelete, chatElement, side }) {
   const dispatch = useDispatch();

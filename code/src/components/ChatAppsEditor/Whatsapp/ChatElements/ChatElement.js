@@ -10,7 +10,7 @@ import {
 import StatusPopup from "./StatusPopup";
 import { Lump } from "./SubComponents";
 import { contentEditableProps } from "../../../../utils";
-import EditButtons from "./EditButtons";
+import EditButtons from "../../../reuseComponents/EditButtons";
 import { BlockPicker } from "react-color";
 import useClickOutside from "../../../../hooks/useClickOutside";
 

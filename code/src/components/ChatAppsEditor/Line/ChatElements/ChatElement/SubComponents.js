@@ -31,7 +31,7 @@ export const Profile = ({ side, showProfile, setProfileImage, src }) => {
   if (side === "left") {
     if (showProfile) {
       return (
-        <label>
+        <label className="profile-wraper">
           <img src={src} alt="img" className="profile" />
           <input type="file" className="disable" onChange={onChange} />
         </label>
