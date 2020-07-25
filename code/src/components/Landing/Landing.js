@@ -59,19 +59,19 @@ const Landing = () => {
             />
             <Detail
               head="Status Update"
-              deatail="Adjustable status, time, operator"
+              deatail="Adjustable status, time and operator on the phone status bar"
               image={statusImage}
               alt="status"
             />
             <Detail
               head="Multiple Themes"
-              deatail="Support Whatsap, Line, Facebook Messenger, Wechat"
+              deatail="Support Whatsap, Line, Facebook Messenger, Wechat themes"
               image={appsImage}
               alt="themes"
             />
             <Detail
               head="Upload Images"
-              deatail="Change profile images separately"
+              deatail="Change profile images of each chat element separately"
               image={uploadImage}
               alt="upload"
             />

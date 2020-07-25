@@ -13,12 +13,7 @@ import { connect } from "react-redux";
 import { contentEditableProps } from "../../utils";
 import EditPopSign from "../reuseComponents/EditPopSign";
 
-function MobileSkeleton({
-  mobileHeadColor,
-  isWhiteTextHeader,
-  children,
-  appInfo,
-}) {
+function MobileSkeleton({ children, appInfo }) {
   return (
     <div className="all-mobile">
       <div className="border-wrapper">

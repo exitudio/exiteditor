@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import sending from "../images/sending.png";
 import sent from "../images/sent.png";
 import read from "../images/read.png";
@@ -9,10 +9,10 @@ import {
 } from "constants/chatConstant";
 import StatusPopup from "./StatusPopup";
 import { Lump } from "./SubComponents";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Tooltip from "@material-ui/core/Tooltip";
-import Fab from "@material-ui/core/Fab";
-import { onPaste } from "../../../../utils";
+import { contentEditableProps } from "../../../../utils";
+import EditButtons from "./EditButtons";
+import { BlockPicker } from "react-color";
+import useClickOutside from "../../../../hooks/useClickOutside";
 
 const mapImageStatus = {
   [STATUS_SENDING]: sending,
@@ -20,7 +20,8 @@ const mapImageStatus = {
   [STATUS_READ]: read,
 };
 
-const ChatElementRight = ({ side, isPrimary, onDelete }) => {
+const ChatElementRight = ({ isPrimary, onDelete, chatElement }) => {
+  const { side, isNewReplyProfile } = chatElement;
   const [isPopupOpening, setOpenPopup] = useState(false);
   const [status, setStatus] = useState(STATUS_READ);
   const onStatusClick = (status) => {
@@ -29,30 +30,42 @@ const ChatElementRight = ({ side, isPrimary, onDelete }) => {
   };
   const openStatusPopup = () => setOpenPopup(true);
   const closeStatusPopup = () => setOpenPopup(false);
-  const [isShowingDelete, setShowingDelete] = useState(false);
+  const [nameColor, setNameColor] = useState("#37d67a");
+  const [showColorPanel, setShowColorPanel] = useState(false);
+  const profileNameRef = useRef();
+  useClickOutside(profileNameRef, () => setShowColorPanel(false));
   return (
-    <div
-      className={`chat-element ${side}`}
-      onMouseOver={() => setShowingDelete(true)}
-      onMouseOut={() => setShowingDelete(false)}
-    >
+    <div className={`chat-element ${side} ${isPrimary ? "primary" : ""}`}>
       <div className="text-wrapper">
         <Lump side={side} isPrimary={isPrimary} />
         <div className={`all-text ${isPrimary ? "primary" : ""}`}>
-          <div
-            contentEditable="true"
-            suppressContentEditableWarning={true}
-            onPaste={onPaste}
-          >
-            Add text ...
-          </div>
-          <div className="status">
-            <span
-              className="time"
-              contentEditable="true"
-              suppressContentEditableWarning={true}
-              onPaste={onPaste}
+          {isNewReplyProfile ? (
+            <div
+              {...contentEditableProps}
+              className="profile-name"
+              style={{ color: nameColor }}
+              onFocus={() => setShowColorPanel(true)}
+              ref={profileNameRef}
             >
+              Name.
+              <div
+                style={{
+                  display: showColorPanel ? "" : "none",
+                  position: "absolute",
+                  zIndex: 100,
+                  top: 60,
+                }}
+              >
+                <BlockPicker
+                  color={nameColor}
+                  onChangeComplete={(color) => setNameColor(color.hex)}
+                />
+              </div>
+            </div>
+          ) : null}
+          <div {...contentEditableProps}>Add text ...</div>
+          <div className="status">
+            <span className="time" {...contentEditableProps}>
               9.12 AM
             </span>
             {side === "right" ? (
@@ -74,18 +87,11 @@ const ChatElementRight = ({ side, isPrimary, onDelete }) => {
           />
         ) : null}
       </div>
-      <div className={`${isShowingDelete ? "" : "disable"}`}>
-        <Tooltip title="Delete">
-          <Fab
-            color="secondary"
-            onClick={onDelete}
-            style={{ margin: "0 20px 2px 20px", flexShrink: 0 }}
-            data-remove-from-image
-          >
-            <DeleteIcon style={{ width: 30, height: 30, color: "white" }} />
-          </Fab>
-        </Tooltip>
-      </div>
+      <EditButtons
+        onDelete={onDelete}
+        chatElement={chatElement}
+        side={side}
+      />
     </div>
   );
 };

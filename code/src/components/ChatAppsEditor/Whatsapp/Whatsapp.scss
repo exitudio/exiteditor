@@ -68,14 +68,24 @@ $blue: rgb(33, 150, 243);
   .chat-body {
     flex-grow: 1;
     padding-top: 20px;
+    .profile-name {
+      display: inline-flex;
+      font-size: 25.6px;
+      font-weight: 500;
+      line-height: 22px;
+      max-width: 100%;
+    }
     .chat-element {
       padding-left: 7%;
       padding-right: 7%;
-      margin-bottom: 24px;
+      margin-bottom: 6px;
       display: flex;
       flex-direction: row-reverse;
       align-items: flex-end;
       position: relative;
+      &.primary {
+        margin-top: 18px;
+      }
       &.left {
         flex-direction: row;
         .text-wrapper {

@@ -10,7 +10,7 @@ import { connect, useDispatch } from "react-redux";
 import { openUploadImage } from "utils";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
 
-function Whatsapp(props) {
+function Whatsapp({ chatElements }) {
   const onChange = (e) => {
     openUploadImage(e, (fileReader) => {
       setProfileImage(fileReader.result);
@@ -20,6 +20,13 @@ function Whatsapp(props) {
   const deleteElement = (id) => {
     dispatch(deleteChat(id));
   };
+  let isMultipleProfile = false;
+  for (let chatElement of chatElements) {
+    if (chatElement.isNewReplyProfile) {
+      isMultipleProfile = true;
+      break;
+    }
+  }
   const [profileImage, setProfileImage] = useState(profile);
   return (
     <div className="whatsapp">
@@ -41,14 +48,16 @@ function Whatsapp(props) {
         <div className="icon-right" />
       </header>
       <div className="chat-body">
-        {props.chatElements.map((chatElement, i, chatElements) => {
+        {chatElements.map((chatElement, i, chatElements) => {
           const prevSide = chatElements[i - 1] && chatElements[i - 1].side;
-          const isPrimary = prevSide !== chatElement.side;
+          const isPrimary =
+            prevSide !== chatElement.side ||
+            (isMultipleProfile && chatElements[i].isNewReplyProfile);
           return (
             <ChatElement
-              {...chatElement}
               isPrimary={isPrimary}
               key={chatElement.id}
+              chatElement={chatElement}
               onDelete={() => deleteElement(chatElement.id)}
             />
           );

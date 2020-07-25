@@ -7,6 +7,10 @@
     margin: auto;
     padding: 20px;
   }
+
+  .MuiGrid-root {
+    overflow-x: hidden;
+  }
   .top-article {
     height: 600px;
     width: 100%;
@@ -32,6 +36,7 @@
     }
     .start-button-wrapper {
       margin-top: 40px;
+      height: 40px;
       .start-button {
         text-decoration: none;
         color: rgb(33, 187, 243);
@@ -57,7 +62,7 @@
       }
       .detail-image {
         width: 200px;
-        object-fit: cover;
+        object-fit: contain;
       }
       .text {
         margin-left: 12px;

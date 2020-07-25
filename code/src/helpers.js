@@ -38,3 +38,11 @@ export const snapShot = (div, onComplete) => {
       console.error("oops, something went wrong!", error);
     });
 };
+
+export const getElementIndexById = (elements, id) => {
+  for (let i = 0; i < elements.length; i++) {
+    if (elements[i].id === id) {
+      return i;
+    }
+  }
+};

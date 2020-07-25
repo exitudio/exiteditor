@@ -3,9 +3,11 @@ import {
   CHAT_APPS_DELETE_CHAT,
   CHAT_APPS_UPDATE_CHAT,
   CHAT_APPS_RESET,
+  CHAT_APPS_TOGGLE_NEW_REPLY_PROFILE,
 } from "../actionTypes";
 import { STATUS_READ } from "../../constants/chatConstant";
 import initialState from "../initialState";
+import { getElementIndexById } from "../../helpers";
 
 let id = 0;
 const chatAppsReducer = (state = initialState.chatApps, action) => {
@@ -17,6 +19,7 @@ const chatAppsReducer = (state = initialState.chatApps, action) => {
         text: "",
         timestamp: "9.12 AM",
         status: STATUS_READ,
+        isNewReplyProfile: false,
       };
       id += 1;
       return {
@@ -39,8 +42,9 @@ const chatAppsReducer = (state = initialState.chatApps, action) => {
     case CHAT_APPS_UPDATE_CHAT: {
       const { id, key, value } = action.payload;
       const newChatElements = [...state.chatElements];
-      newChatElements[id] = { ...newChatElements[id] };
-      newChatElements[id][key] = value;
+      const index = getElementIndexById(newChatElements, id);
+      newChatElements[index] = { ...newChatElements[index] };
+      newChatElements[index][key] = value;
       return {
         ...state,
         chatElements: newChatElements,
@@ -51,6 +55,19 @@ const chatAppsReducer = (state = initialState.chatApps, action) => {
       return {
         ...state,
         chatElements: initialState.chatApps.chatElements,
+      };
+    }
+
+    case CHAT_APPS_TOGGLE_NEW_REPLY_PROFILE: {
+      const id = action.payload;
+      const newChatElements = [...state.chatElements];
+      const index = getElementIndexById(newChatElements, id);
+      newChatElements[index] = { ...newChatElements[index] };
+      newChatElements[index].isNewReplyProfile = !newChatElements[index]
+        .isNewReplyProfile;
+      return {
+        ...state,
+        chatElements: newChatElements,
       };
     }
 
