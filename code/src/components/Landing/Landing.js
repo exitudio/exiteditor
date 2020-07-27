@@ -38,7 +38,7 @@ const Landing = () => {
                 <h1>Chat</h1>
                 <h2>Generator</h2>
                 <h4>
-                  Easy to use chat generator support all the most famous chat
+                  Easy to use fake chat generator support all the most famous chat
                   application themes, Whatsapp, Line, Facebook Messenger, Wechat
                 </h4>
                 <div className="start-button-wrapper">
