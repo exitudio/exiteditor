@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Whatsapp.scss";
 import profile from "../../images/profile.jpg";
 import plus from "./images/plus.jpg";
@@ -10,6 +10,7 @@ import { connect, useDispatch } from "react-redux";
 import { openUploadImage } from "utils";
 import { deleteChat } from "../../../redux/chatApps/chatAppsActions";
 import { isGroupFromElements } from "../../../helpers";
+import { contentEditableProps } from "../../../utils";
 
 function Whatsapp({ chatElements }) {
   const onChange = (e) => {
@@ -23,6 +24,11 @@ function Whatsapp({ chatElements }) {
   };
   let isGroup = isGroupFromElements(chatElements);
   const [profileImage, setProfileImage] = useState(profile);
+
+  const textSending = useRef();
+  const onClickFooter = () => {
+    textSending.current.focus();
+  };
   return (
     <div className="whatsapp">
       <div className="background-repeat" />
@@ -33,11 +39,7 @@ function Whatsapp({ chatElements }) {
           <input type="file" className="disable" onChange={onChange} />
         </label>
 
-        <div
-          className="name"
-          contentEditable="true"
-          suppressContentEditableWarning={true}
-        >
+        <div className="name" {...contentEditableProps}>
           Lisa
         </div>
         <div className="icon-right" />
@@ -60,11 +62,16 @@ function Whatsapp({ chatElements }) {
         <AddChatElements side="right" />
         <AddChatElements side="left" />
       </div>
-      <footer>
+      <footer onClick={onClickFooter}>
         <img src={plus} alt="plus" className="plus" />
         <div className="text-box"></div>
         <img src={_image} alt="img" className="img" />
         <img src={mic} alt="mic" className="mic" />
+        <div
+          className="text-sending"
+          ref={textSending}
+          {...contentEditableProps}
+        ></div>
       </footer>
     </div>
   );

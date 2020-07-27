@@ -3,7 +3,7 @@ import { Profile } from "./SubComponents";
 import profile from "../../../../images/profile.jpg";
 import lumpLeft from "../../images/lump-left.png";
 import lumpRight from "../../images/lump-right.png";
-import { onPaste, contentEditableProps } from "../../../../../utils";
+import { contentEditableProps } from "../../../../../utils";
 import EditButtons from "../../../../reuseComponents/EditButtons";
 
 const ChatElement = ({ chatElement, onDelete, isPrimary }) => {
@@ -28,13 +28,7 @@ const ChatElement = ({ chatElement, onDelete, isPrimary }) => {
             alt="lump-left"
             className="lump"
           />
-          <div
-            contentEditable="true"
-            suppressContentEditableWarning={true}
-            onPaste={onPaste}
-          >
-            Add text ...
-          </div>
+          <div {...contentEditableProps}>Add text ...</div>
         </div>
       </div>
       <EditButtons onDelete={onDelete} chatElement={chatElement} side={side} />

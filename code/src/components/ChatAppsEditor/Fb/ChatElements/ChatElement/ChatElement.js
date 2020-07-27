@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Profile } from "./SubComponents";
 import profile from "../../../../images/profile.jpg";
-import { onPaste } from "../../../../../utils";
 import EditButtons from "../../../../reuseComponents/EditButtons";
+import { contentEditableProps } from "../../../../../utils";
 
 const ChatElement = ({ chatElement, isTop, isBottom, onDelete }) => {
   const { side } = chatElement;
@@ -22,13 +22,7 @@ const ChatElement = ({ chatElement, isTop, isBottom, onDelete }) => {
             isBottom ? "is-bottom" : ""
           }`}
         >
-          <div
-            contentEditable="true"
-            suppressContentEditableWarning={true}
-            onPaste={onPaste}
-          >
-            Add text ...
-          </div>
+          <div {...contentEditableProps}>Add text ...</div>
         </div>
       </div>
       <EditButtons onDelete={onDelete} chatElement={chatElement} side={side} />

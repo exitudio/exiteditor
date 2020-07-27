@@ -1,21 +1,16 @@
 import React from "react";
 import lumpRight from "../../images/lump-right.png";
 import lumpLeft from "../../images/lump-left.png";
-import { openUploadImage, onPaste } from "utils";
-
-const contentEditable = {
-  contentEditable: "true",
-  suppressContentEditableWarning: true,
-  onPaste: onPaste,
-};
+import { openUploadImage } from "utils";
+import { contentEditableProps } from "../../../../../utils";
 
 export const StatusElement = ({ side }) => {
   return (
     <div>
-      <div {...contentEditable} className={`text-status ${side}`}>
+      <div {...contentEditableProps} className={`text-status ${side}`}>
         {side === "right" ? "Read" : "   "}
       </div>
-      <div {...contentEditable} className="text-status">
+      <div {...contentEditableProps} className="text-status">
         9.12 AM
       </div>
     </div>
