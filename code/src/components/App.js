@@ -1,5 +1,4 @@
-import React from "react";
-import ChatAppsEditor from "./ChatAppsEditor";
+import React, { Suspense } from "react";
 import "./App.scss";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
@@ -13,6 +12,8 @@ const theme = createMuiTheme({
   },
 });
 
+const ChatAppsEditor = React.lazy(() => import("./ChatAppsEditor"));
+
 function App() {
   return (
     <div className="app flex-grow-1">
@@ -24,7 +25,9 @@ function App() {
               <Landing />
             </Route>
             <Route path={["/chat-generator/:appId", "/chat-generator"]}>
-              <ChatAppsEditor />
+              <Suspense fallback={<div>Loading...</div>}>
+                <ChatAppsEditor />
+              </Suspense>
             </Route>
           </Switch>
         </ThemeProvider>
